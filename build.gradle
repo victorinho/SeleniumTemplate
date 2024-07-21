@@ -46,3 +46,9 @@ dependencies {
     api "org.slf4j:slf4j-simple:2.0.9"
 }
 
+test {
+    useJUnitPlatform {
+        excludeTags "ignore"
+    }
+    systemProperty "cucumber.execution.main-class", "io.cucumber.core.cli.Main"
+}
