@@ -13,6 +13,14 @@ public class ElementsSteps  extends BaseTest {
 
     ElementsPage elementsPage = new ElementsPage(driver);
 
+    //Actions
+    @When("The user select Text Box item")
+    public void selectTextBoxItem() {
+        elementsPage.selectTextBoxItem();
+    }
+
+
+    //Assertions
     @Then("The left panel is displayed")
     public void checkUserIsLogged() {
         elementsPage.checkLeftPanel();
