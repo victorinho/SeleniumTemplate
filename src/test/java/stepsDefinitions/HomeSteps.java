@@ -9,7 +9,6 @@ import pages.HomePage;
 
 public class HomeSteps extends BaseTest {
 
-
     public HomeSteps() {
         super();
     }
