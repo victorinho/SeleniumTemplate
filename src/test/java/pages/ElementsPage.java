@@ -9,6 +9,8 @@ public class ElementsPage extends BasePage{
 
     By leftPanel = By.cssSelector(".left-pannel");
     By selectTextBoxItem = By.id("item-0");
+    By selectCheckTextItem = By.id("item-1");
+    By selectRadioButtonItem = By.id("item-2");
 
     public ElementsPage(WebDriver driver) {
         super(driver);
@@ -17,6 +19,12 @@ public class ElementsPage extends BasePage{
     //Actions
     public void selectTextBoxItem(){
         click(selectTextBoxItem);
+    }
+    public void selectCheckTextItem(){
+        click(selectCheckTextItem);
+    }
+    public void selectRadioButtonItem(){
+        click(selectRadioButtonItem);
     }
 
 

@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Config;
@@ -18,7 +19,7 @@ public class BaseTest {
 
     public static void setUpDriver() {
         System.out.println("\n ------ ChromeDriver selected ------");
-        chromeDriver();
+        safariDriver();
     }
 
     public static void chromeDriver() {
@@ -32,6 +33,14 @@ public class BaseTest {
             System.out.println("\n ------ Headless mode selected ------");
         }
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(WEB_DRIVER_WAIT_REF)));
+    }
+
+    public static void safariDriver() {
+        if (HEADLESS_MODE_REF) {
+            System.out.println("\n ------ Safari no soporta el modo headless ------");
+        }
+        driver = new SafariDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(WEB_DRIVER_WAIT_REF)));
     }
 
