@@ -18,3 +18,14 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+
+
+  gradle-tests:
+    image: gradle:8.6-jdk17
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    depends_on:
+      - selenium-hub
+      - chrome
+    command: ["gradle", "test"]
