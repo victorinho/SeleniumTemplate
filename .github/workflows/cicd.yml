@@ -13,22 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v3
 
-    - name: Set up Docker
-      uses: actions/setup-docker@v3
+      - name: Build and run tests with Docker Compose
+        run: |
+          docker-compose up -d
+          docker-compose run gradle-tests
+          docker-compose down
 
-    - name: Build and run tests with Docker Compose
-      run: |
-        cd docker
-        docker-compose up -d
-        docker-compose run <nombre_del_servicio> <comando_para_correr_test>
-        docker-compose down
-
-    - name: Archive test results
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: ./docker/path/to/test-results
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: ./build/reports/tests/test
