@@ -1,10 +1,13 @@
 package pages;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,9 +20,9 @@ public class BaseTest {
     private static final boolean HEADLESS_MODE_REF = Config.HEADLESS_MODE;
     private static final String WEB_DRIVER_WAIT_REF = Config.WEB_DRIVER_WAIT;
 
-    public static void setUpDriver() {
+    public static void setUpDriver() throws MalformedURLException {
         System.out.println("\n ------ ChromeDriver selected ------");
-        safariDriver();
+        dockerDriver();
     }
 
     public static void chromeDriver() {
@@ -33,6 +36,22 @@ public class BaseTest {
             System.out.println("\n ------ Headless mode selected ------");
         }
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(WEB_DRIVER_WAIT_REF)));
+    }
+
+    //new RemoteWebDriver(new URL(DOCKER_URL), options2);
+
+    public static void dockerDriver() throws MalformedURLException {
+        //String ruta_chromedriver = "../driver/chromedriver";
+        //System.setProperty("webdriver.chrome.driver", ruta_chromedriver);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        //options.addArguments("--start-maximized");
+        if (HEADLESS_MODE_REF) {
+            options.addArguments("--headless");
+            System.out.println("\n ------ Headless mode selected ------");
+        }
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(WEB_DRIVER_WAIT_REF)));
     }
 

@@ -5,6 +5,7 @@ import pages.BaseTest;
 import utils.BrowserUtils;
 import utils.Config;
 
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 import static pages.BaseTest.driver;
@@ -18,7 +19,7 @@ public class CucumberHooks {
     public static final Boolean FULL_STEPS_REF = Config.FULL_STEPS;
 
     @Before
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         setUpDriver();
         BrowserUtils.maximizeWindow(driver);
     }
