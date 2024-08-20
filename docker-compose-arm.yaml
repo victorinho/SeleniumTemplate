@@ -28,4 +28,4 @@ services:
     depends_on:
       - selenium-hub
       - chrome
-    command: ["gradle", "test"]
+    command: [ "gradle", "clean", "test" ]

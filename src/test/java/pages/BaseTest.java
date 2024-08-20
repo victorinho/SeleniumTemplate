@@ -51,7 +51,7 @@ public class BaseTest {
             options.addArguments("--headless");
             System.out.println("\n ------ Headless mode selected ------");
         }
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+        driver = new RemoteWebDriver(new URL("http://selenium-hub:4444/wd/hub"), options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(WEB_DRIVER_WAIT_REF)));
     }
 
