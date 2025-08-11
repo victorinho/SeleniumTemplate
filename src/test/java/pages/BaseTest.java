@@ -22,7 +22,7 @@ public class BaseTest {
 
     public static void setUpDriver() throws MalformedURLException {
         System.out.println("\n ------ ChromeDriver selected ------");
-        dockerDriver();
+        chromeDriver();
     }
 
     public static void chromeDriver() {
